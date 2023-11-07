@@ -6,7 +6,7 @@ let Row = (props) => {
     <div className='row'>
       {props.products.map((product, index) => {
         return (
-          <Card img={product} />
+          <Card productName={product.productName} img={product.productImage} />
         );
       })
       }

@@ -5,7 +5,16 @@ import Backpack from './assets/backpack.png';
 import Waterbottle from './assets/waterbottle.png';
 import Charger from './assets/charger.png';
 
-let products = [Backpack, Waterbottle, Charger];
+let products = [{
+  productName: 'Backpack',
+  productImage: Backpack
+}, {
+  productName: 'Waterbottle',
+  productImage: Waterbottle
+}, {
+  productName: 'Charger',
+  productImage: Charger
+},];
 
 function App() {
   return (
@@ -14,8 +23,8 @@ function App() {
       </header>
       <div className='home'>
         <Hero />
-        <Row products={products}/>
-        <Row products={products}/>
+        <Row products={products} />
+        <Row products={products} />
       </div>
     </div>
   );

@@ -3,7 +3,7 @@ import '../App.css';
 let Card = (props) => {
   return (
     <div className='card'>
-      <p>Product</p>
+      <p>{props.productName}</p>
       <img src={props.img}/>
     </div>
   );
