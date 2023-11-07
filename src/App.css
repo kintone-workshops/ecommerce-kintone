@@ -1,1 +1,24 @@
+.home {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr repeat(2, 1fr);
+  grid-column-gap: 12px;
+  grid-row-gap: 12px;
+  }
 
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero img {
+  width: 50%;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
