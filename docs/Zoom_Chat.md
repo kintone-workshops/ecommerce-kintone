@@ -1,10 +1,10 @@
 # Zoom Chat Snippets
 
 TODO: Perform the following steps to update the Zoom Chat Snippets:
-* TODO: swap `bit.ly/INSERT_REPO_SHORT_LINK` with the bit.ly link
-* TODO: swap `INSERT_REPO_NAME` with the workshop repo name
-* TODO: swap `youtube.com/live/INSERT_YOUTUBE_LINK` with YouTube Live Link
-* TODO: If not needed, remove `npm install -g @kintone/customize-uploader`
+* TODO: swap `bit.ly/kintone-shop` with the bit.ly link
+* TODO: swap `ecommerce-kintone` with the workshop repo name
+* TODO: swap `youtube.com/live/wdzul3EUnqA
+` with YouTube Live Link
 * TODO: Update `Create a .env File` section
 * TODO: Update `Create a Kintone Web Database App` section
 * TODO: Swap `bit.ly/INSERT_SURVEY_LINK` with the Survey Link
@@ -19,7 +19,6 @@ TODO: Perform the following steps to update the Zoom Chat Snippets:
 * [Start](#start)
 * [Live on YouTube](#live-on-youtube)
 * [Install Commands {Get Started}](#install-commands-get-started)
-* [Kintone Customize Uploader](#kintone-customize-uploader)
 * [Workshop Steps](#workshop-steps)
 * [YouTube](#youtube)
 * [Create a .env File](#create-a-env-file)
@@ -64,13 +63,14 @@ TODO: Perform the following steps to update the Zoom Chat Snippets:
 ## Quick Links
 
 🤖 Clone the Workshop Repository!
-https://bit.ly/INSERT_REPO_SHORT_LINK
+https://bit.ly/kintone-shop
 
 🚀 Have your Kintone Subdomain ready!
 https://kintone.dev/new
 
 📺 YouTube live stream
-https://youtube.com/live/INSERT_YOUTUBE_LINK
+https://youtube.com/live/wdzul3EUnqA
+
 
 =   =   =   =   =   =   =   =   =   =
 
@@ -82,7 +82,7 @@ Hello everyone, the workshop will start real soon!
 Be sure you are ready by completing the following tasks:
 
 1. 🤖 Clone the Workshop Repository!  
-https://bit.ly/INSERT_REPO_SHORT_LINK
+https://bit.ly/kintone-shop
 
 2. 🚀 Have your Kintone Subdomain ready!
 If you have not already, sign up for the FREE Kintone Developer License:  
@@ -102,7 +102,7 @@ Hello everyone, thank you for joining the workshop!
 Here is how to get started:
 
 1. 🤖 Clone the Workshop Repository!
-https://bit.ly/INSERT_REPO_SHORT_LINK
+https://bit.ly/kintone-shop
 
 2. 🚀 Have your Kintone Subdomain ready!
 If you have not already, sign up for the FREE Kintone Developer License by filling out this web form:  
@@ -115,7 +115,8 @@ https://kintone.dev/new
 ## Live on YouTube
 
 If you get lost, you can "rewind" on our lives stream on YouTube:
-https://youtube.com/live/INSERT_YOUTUBE_LINK
+https://youtube.com/live/wdzul3EUnqA
+
 
 =   =   =   =   =   =   =   =   =   =
 
@@ -123,28 +124,18 @@ https://youtube.com/live/INSERT_YOUTUBE_LINK
 
 cd Downloads
 
-git clone https://github.com/kintone-workshops/INSERT_REPO_NAME
+git clone https://github.com/kintone-workshops/ecommerce-kintone
 
-cd INSERT_REPO_NAME
+cd ecommerce-kintone
 
 npm install
 
-npm install -g @kintone/customize-uploader
-
-=   =   =   =   =   =   =   =   =   =
-
-## Kintone Customize Uploader
-
-npm install -g @kintone/customize-uploader
-
-=   =   =   =   =   =   =   =   =   =
-
 ## Workshop Steps
 
-INSERT_REPO_NAME/docs
+ecommerce-kintone/docs
 /Workshop_Steps.md
 
-or https://github.com/kintone-workshops/INSERT_REPO_NAME/blob/main/docs/Workshop_Steps.md
+or https://github.com/kintone-workshops/ecommerce-kintone/blob/main/docs/Workshop_Steps.md
 
 =   =   =   =   =   =   =   =   =   =
 
@@ -163,7 +154,8 @@ https://kintone.dev/new
 =   =   =   =   =   =   =   =   =   =
 
 This is also live on YouTube:
-https://youtube.com/live/INSERT_YOUTUBE_LINK
+https://youtube.com/live/wdzul3EUnqA
+
 
 It is a bit delayed but for those who want to "rewind", this is another great option ~
 
@@ -199,7 +191,7 @@ VITE_OPEN_AI_TOKEN="1234567890"
 
 Here is a rundown of common problems that may occur & its solutions!
 
-https://github.com/kintone-workshops/INSERT_REPO_NAME#debugging
+https://github.com/kintone-workshops/ecommerce-kintone#debugging
 
 If you have additional questions during the workshop, feel free to message me.
 
@@ -239,7 +231,7 @@ Set the following Field Codes
 - Be sure to click Save and Activate App buttons! 💪
 
 Ref:  
-https://github.com/kintone-workshops/INSERT_REPO_NAME/blob/main/docs/Workshop_Steps.md#d-create-a-kintone-web-database-app
+https://github.com/kintone-workshops/ecommerce-kintone/blob/main/docs/Workshop_Steps.md#d-create-a-kintone-web-database-app
 
 =   =   =   =   =   =   =   =   =   =
 
@@ -354,7 +346,7 @@ URL: example.kintone.com
 
 If you are ever lost, check out our step-by-step guide here:
 
-https://github.com/kintone-workshops/INSERT_REPO_NAME/blob/main/docs/Workshop_Steps.md
+https://github.com/kintone-workshops/ecommerce-kintone/blob/main/docs/Workshop_Steps.md
 
 =   =   =   =   =   =   =   =   =   =
 
@@ -420,7 +412,8 @@ App ID = 1
 ## Live on YouTube
 
 If you get lost, you can "rewind" on our lives stream on YouTube:
-https://youtube.com/live/INSERT_YOUTUBE_LINK
+https://youtube.com/live/wdzul3EUnqA
+
 
 =   =   =   =   =   =   =   =   =   =
 

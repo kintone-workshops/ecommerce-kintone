@@ -11,7 +11,7 @@ TODO: 3 sentence description of the event
 ### 🤖 CLONE THE WORKSHOP REPOSITORY
 
 This is the codebase that we will start the workshop from!
-* [bit.ly/INSERT_REPO_SHORT_LINK](https://bit.ly/INSERT_REPO_SHORT_LINK)
+* [bit.ly/kintone-shop](https://bit.ly/kintone-shop)
 
 ### 📂 GET A KINTONE SUBDOMAIN (DATABASE)
 
@@ -40,7 +40,9 @@ If you don't have Node.js & npm installed, refer to the [Guide on Installing Nod
 Subscribe to our [YouTube channel](https://www.youtube.com/c/KintoneDeveloperProgram) to get notified when we post this workshop's recording!  
 
 This workshop will be live-streamed on YouTube Live.
-* [youtube.com/live/INSERT_YOUTUBE_LINK](https://www.youtube.com/live/INSERT_YOUTUBE_LINK)
+* [youtube.com/live/wdzul3EUnqA
+](https://www.youtube.com/live/wdzul3EUnqA
+)
 
 ## ⚙️ WHAT IS KINTONE?
 
