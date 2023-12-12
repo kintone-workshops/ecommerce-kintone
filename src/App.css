@@ -4,7 +4,7 @@
   grid-template-rows: 1fr repeat(1, 3fr);
   grid-column-gap: 12px;
   grid-row-gap: 12px;
-  }
+}
 
 .hero {
   display: flex;
@@ -29,11 +29,11 @@
   border: 1px solid black;
   margin: 1%;
   padding: 2%;
-  transition: all .2s ease-in-out; 
+  transition: all .2s ease-in-out;
 }
 
 .card:hover {
-  transform: scale(1.05); 
+  transform: scale(1.05);
 }
 
 .header {
@@ -47,18 +47,22 @@
 
 .loader {
   position: absolute;
-  top: 50%;
-  left: 50%;
   z-index: 99;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  opacity: 90%;
 }
 
 .header li {
   list-style: none;
-  transition: all .2s ease-in-out; 
+  transition: all .2s ease-in-out;
 }
 
 .header li:hover {
-  transform: scale(1.1); 
+  transform: scale(1.1);
 }
 
 .header a {
@@ -98,5 +102,5 @@
 }
 
 .cartIcon img:hover {
-  transform: scale(1.2); 
+  transform: scale(1.2);
 }
