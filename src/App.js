@@ -1,30 +1,28 @@
 import './App.css';
 import Hero from './components/hero.js';
-import Row from './components/row.js';
-import Backpack from './assets/backpack.png';
-import Waterbottle from './assets/waterbottle.png';
-import Charger from './assets/charger.png';
-
-let products = [{
-  productName: 'Backpack',
-  productImage: Backpack
-}, {
-  productName: 'Waterbottle',
-  productImage: Waterbottle
-}, {
-  productName: 'Charger',
-  productImage: Charger
-},];
+import Card from './components/card.js';
+import cartIcon from './assets/shopping-cart.png';
+import productsList from './data/products.js';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+      <header className="header">
+        <li><a href='/'>Home</a></li>
+        <li><a href='/about'>About Us</a></li>
+        <li><a href='https://kintone.dev/new'>go sign up for kintone</a></li>
+        <div className='cartIcon'><button><img src={cartIcon}></img></button></div>
       </header>
       <div className='home'>
         <Hero />
-        <Row products={products} />
-        <Row products={products} />
+        <div className='row'>
+          {productsList.map((product, index) => {
+            return (
+              <Card key={index} productName={product.productName} img={product.productImage} />
+            );
+          })
+          }
+        </div>
       </div>
     </div>
   );
