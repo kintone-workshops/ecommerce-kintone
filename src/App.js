@@ -4,10 +4,12 @@ import Hero from './components/hero.js';
 import Card from './components/card.js';
 import Header from './components/header.js';
 import productsList from './data/products.js';
+import { Oval } from  'react-loader-spinner'
 import { Toaster } from 'react-hot-toast';
 
 function App() {
   const dialogRef = useRef(null);
+  const [loading, setLoading] = useState(false);
   const [cart, setCart] = useState([{
     Backpack: {
       count: 0
@@ -33,6 +35,10 @@ function App() {
     openDialog()
   }
 
+  let toggleLoading = () => {
+    setLoading(!loading);
+  }
+
   const openDialog = () => {
     if (dialogRef.current) {
       dialogRef.current.showModal();
@@ -42,11 +48,18 @@ function App() {
     if (dialogRef.current) {
       dialogRef.current.close();
     }
+    toggleLoading()
   };
 
   return (
     <div className="App">
       <div><Toaster position="bottom-center" /></div>
+      <Oval
+        height={80}
+        width={80}
+        color="#4fa94d"
+        visible={loading}
+        wrapperClass="loader" />
       <dialog ref={dialogRef}>
         <h2>Checkout</h2>
         {cart.map(item => {
@@ -58,7 +71,7 @@ function App() {
             </div>
           )
         })}
-        <button onClick={closeDialog}>close</button>
+        <button onClick={closeDialog}>Checkout</button>
       </dialog>
       <Header startCheckout={startCheckout} cartCount={cartCount} />
       <div className='home'>
