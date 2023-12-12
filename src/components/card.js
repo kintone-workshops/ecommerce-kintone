@@ -1,18 +1,12 @@
 import '../App.css';
-
-let cardModal = () => {
-  return (
-    <dialog>
-      <button autofocus>Close</button>
-      <p>Add to Cart?</p>
-      <button>Yes</button>
-    </dialog>
-  )
-}
+import toast from 'react-hot-toast';
 
 let Card = (props) => {
   return (
-    <div className='card' onClick={null}>
+    <div className='card' onClick={() => {
+      props.addToCart(props.productName)
+      toast.success("Added to Cart!")
+    }}>
       <p>{props.productName}</p>
       <img src={props.img} />
     </div>
