@@ -6,6 +6,7 @@ import Header from './components/header.js';
 import productsList from './data/products.js';
 import { Oval } from 'react-loader-spinner'
 import { Toaster } from 'react-hot-toast';
+import Confetti from 'react-confetti'
 import tryCheckout from './requests/tryCheckout.js';
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [cart, setCart] = useState(productsList)
   const [cartCount, setCartCount] = useState(0)
+  const [isSuccess, setIsSuccess] = useState(false);
 
   let addToCart = (selectedItem) => {
     let cartCopy = cart;
@@ -31,7 +33,7 @@ function App() {
       let checkoutTry = await tryCheckout(cart);
       if (checkoutTry.success === true) {
         setLoading(false);
-        console.log("success!")
+        setIsSuccess(true);
         setCart(productsList);
         setCartCount(0)
       } else {
@@ -62,6 +64,7 @@ function App() {
   return (
     <div className="App">
       <div><Toaster position="bottom-center" /></div>
+      {isSuccess ? <Confetti/> : null}
       <Oval
         height={80}
         width={80}
