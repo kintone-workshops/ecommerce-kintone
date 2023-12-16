@@ -4,8 +4,10 @@
 import express from 'express';
 import cors from 'cors';
 import * as dotenv from 'dotenv'
-dotenv.config()
-const PORT = 5000;
+dotenv.config({
+  path: '../../.env'
+})
+const PORT = 50000;
 const app = express();
 
 // Get Kintone credentials from a .env file
@@ -26,7 +28,7 @@ const corsOptions = {
 const multipleRecordsEndpoint = `https://${subdomain}.kintone.com/k/v1/records.json?app=${appID}`
 const singleRecordEndpoint = `https://${subdomain}.kintone.com/k/v1/record.json?app=${appID}`;
 
-app.get('/getData', cors(corsOptions), async (req, res) => {
+let checkItemStock = async () => {
   const fetchOptions = {
     method: 'GET',
     headers: {
@@ -35,35 +37,53 @@ app.get('/getData', cors(corsOptions), async (req, res) => {
   }
   console.log(fetchOptions)
   const response = await fetch(multipleRecordsEndpoint, fetchOptions);
-  const jsonResponse = await response.json();
-  console.log(jsonResponse)
-  res.json(jsonResponse);
-});
+  return response.json();
+}
+
+let compareRequestAndStock = async (stock, request) => {
+  request.forEach(requestedItem => {
+    let stockItem = stock.find((item) => item.Record_number.value === requestedItem.id.toString())
+    if (stockItem.count.value < requestedItem.count) {
+      return false;
+    }
+  });
+}
+
 // This route executes when a PUT request lands on localhost:50000/putData
 app.put('/putData', cors(corsOptions), async (req, res) => {
-  const requestBody = {
-    'app': appID,
-    'id': req.id,
-    'record': {
-      'value': {
-        'value': req.newCount
+
+  let itemStock = await checkItemStock();
+  let filteredRequest = req.body.filter((item) => item.count >= 1)
+
+  if (compareRequestAndStock(itemStock.records, filteredRequest)) {
+    console.log("In Stock!");
+    const requestBody = {
+      'app': appID,
+      'id': req.id,
+      'record': {
+        'value': {
+          'value': req.newCount
+        }
       }
+    };
+    const options = {
+      method: 'PUT',
+      headers: {
+        'X-Cybozu-API-Token': apiToken,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(requestBody)
     }
-  };
-  const options = {
-    method: 'POST',
-    headers: {
-      'X-Cybozu-API-Token': apiToken,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(requestBody)
+    const response = await fetch(singleRecordEndpoint, options);
+    const jsonResponse = await response.json();
+    console.log(jsonResponse)
+    res.json(jsonResponse);
+  } else {
+    console.log("Not Enough in Stock");
   }
-  const response = await fetch(singleRecordEndpoint, options);
-  const jsonResponse = await response.json();
-  console.log(jsonResponse)
-  res.json(jsonResponse);
+
 });
 
 app.listen(PORT, () => {
-  console.log(`\n Backend server listening at http://localhost:${PORT} \n Confirm if Kintone records are being retrieved at \n http://localhost:${PORT}/getData`);
+  console.log(`\n Backend server listening at http://localhost:${PORT} \n Confirm if Kintone records are being retrieved at \n http://localhost:${PORT}/putData`);
 });

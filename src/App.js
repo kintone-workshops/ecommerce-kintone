@@ -6,6 +6,7 @@ import Header from './components/header.js';
 import productsList from './data/products.js';
 import { Oval } from 'react-loader-spinner'
 import { Toaster } from 'react-hot-toast';
+import tryCheckout from './requests/tryCheckout.js';
 
 function App() {
   const dialogRef = useRef(null);
@@ -25,8 +26,13 @@ function App() {
     console.log(cart)
   }
 
-  let startCheckout = () => {
-    openDialog()
+  let startCheckout = async () => {
+    closeDialog()
+    try {
+      await tryCheckout(cart);
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   let toggleLoading = () => {
@@ -64,12 +70,12 @@ function App() {
           )
         })}
         {cart.some(element => element.count >= 1) ? (
-          <button onClick={closeDialog}>Checkout</button>
+          <button onClick={startCheckout}>Checkout</button>
         ) : (
           <button disabled onClick={closeDialog}>No Items in Cart!</button>
         )}
       </dialog>
-      <Header startCheckout={startCheckout} cartCount={cartCount} />
+      <Header startCheckout={openDialog} cartCount={cartCount} />
       <div className='home'>
         <Hero />
         <div className='row'>
