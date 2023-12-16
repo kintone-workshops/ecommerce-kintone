@@ -4,29 +4,23 @@ import Hero from './components/hero.js';
 import Card from './components/card.js';
 import Header from './components/header.js';
 import productsList from './data/products.js';
-import { Oval } from  'react-loader-spinner'
+import { Oval } from 'react-loader-spinner'
 import { Toaster } from 'react-hot-toast';
 
 function App() {
   const dialogRef = useRef(null);
   const [loading, setLoading] = useState(false);
-  const [cart, setCart] = useState([{
-    Backpack: {
-      count: 0
-    },
-    Waterbottle: {
-      count: 0
-    },
-    Charger: {
-      count: 0
-    }
-  }])
+  const [cart, setCart] = useState(productsList)
   const [cartCount, setCartCount] = useState(0)
 
-  let addToCart = (item) => {
+  let addToCart = (selectedItem) => {
     let cartCopy = cart;
-    cartCopy[0][item].count += 1;
-    setCartCount(cartCount + 1);
+    cartCopy.forEach(cartObject => {
+      if (cartObject.productName == selectedItem) {
+        cartObject.count += 1;
+        setCartCount(cartCount + 1);
+      }
+    });
     setCart(cartCopy);
     console.log(cart)
   }
@@ -64,14 +58,16 @@ function App() {
         <h2>Checkout</h2>
         {cart.map(item => {
           return (
-            <div key="key">
-              <p>Backpacks: {item.Backpack.count}</p>
-              <p>Waterbottles: {item.Waterbottle.count}</p>
-              <p>Chargers: {item.Charger.count}</p>
+            <div key={item.id}>
+              <p>{item.productName}: {item.count}</p>
             </div>
           )
         })}
-        <button onClick={closeDialog}>Checkout</button>
+        {cart.some(element => element.count >= 1) ? (
+          <button onClick={closeDialog}>Checkout</button>
+        ) : (
+          <button disabled onClick={closeDialog}>No Items in Cart!</button>
+        )}
       </dialog>
       <Header startCheckout={startCheckout} cartCount={cartCount} />
       <div className='home'>

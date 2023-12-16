@@ -15,6 +15,7 @@
 .hero img {
   width: 50%;
   max-height: 200px;
+  margin: 1%;
 }
 
 .row {

@@ -5,27 +5,21 @@ import Charger from '../assets/charger.png';
 
 let Products = [{
   'productName': 'Backpack',
-  'productImage': Backpack
+  'productImage': Backpack,
+  'id': 1,
+  'count': 0
 },
 {
   'productName': 'Waterbottle',
-  'productImage': Waterbottle
+  'productImage': Waterbottle,
+  'id': 2,
+  'count': 0
 },
 {
   'productName': 'Charger',
-  'productImage': Charger
-},
-{
-  'productName': 'Backpack',
-  'productImage': Backpack
-},
-{
-  'productName': 'Waterbottle',
-  'productImage': Waterbottle
-},
-{
-  'productName': 'Charger',
-  'productImage': Charger
+  'productImage': Charger,
+  'id': 3,
+  'count': 0
 }]
 
 export default Products;
