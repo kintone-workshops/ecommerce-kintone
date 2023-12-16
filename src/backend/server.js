@@ -1,7 +1,7 @@
 // backend - server.js - Routes API requests from the frontend to Kintone
 
 // Express Server Setup
-import express from 'express';
+import express, { json } from 'express';
 import cors from 'cors';
 import * as dotenv from 'dotenv'
 dotenv.config({
@@ -26,7 +26,6 @@ const corsOptions = {
 
 // Kintone's record(s) endpoints
 const multipleRecordsEndpoint = `https://${subdomain}.kintone.com/k/v1/records.json?app=${appID}`
-const singleRecordEndpoint = `https://${subdomain}.kintone.com/k/v1/record.json?app=${appID}`;
 
 let checkItemStock = async () => {
   const fetchOptions = {
@@ -35,53 +34,65 @@ let checkItemStock = async () => {
       'X-Cybozu-API-Token': apiToken
     }
   }
-  console.log(fetchOptions)
   const response = await fetch(multipleRecordsEndpoint, fetchOptions);
   return response.json();
 }
 
 let compareRequestAndStock = async (stock, request) => {
+  let validItems = [];
   request.forEach(requestedItem => {
     let stockItem = stock.find((item) => item.Record_number.value === requestedItem.id.toString())
-    if (stockItem.count.value < requestedItem.count) {
-      return false;
+    if (stockItem.count.value >= requestedItem.count) {
+      let newItem = requestedItem;
+      newItem.count = stockItem.count.value - requestedItem.count;
+      validItems.push(newItem)
     }
   });
+  return validItems;
 }
 
 // This route executes when a PUT request lands on localhost:50000/putData
 app.put('/putData', cors(corsOptions), async (req, res) => {
-
   let itemStock = await checkItemStock();
   let filteredRequest = req.body.filter((item) => item.count >= 1)
+  let itemsToUpdate = await compareRequestAndStock(itemStock.records, filteredRequest);
 
-  if (compareRequestAndStock(itemStock.records, filteredRequest)) {
-    console.log("In Stock!");
-    const requestBody = {
-      'app': appID,
-      'id': req.id,
+  if (itemsToUpdate.length != filteredRequest.length) {
+    res.status(404).json({
+      success: false,
+      response: "not in stock"
+    });
+    return;
+  }
+  const requestBody = {
+    'app': appID,
+    'records': []
+  };
+  itemsToUpdate.forEach(item => {
+    requestBody.records.push({
+      'id': item.id,
       'record': {
-        'value': {
-          'value': req.newCount
+        'count': {
+          'value': item.count
         }
       }
-    };
-    const options = {
-      method: 'PUT',
-      headers: {
-        'X-Cybozu-API-Token': apiToken,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(requestBody)
-    }
-    const response = await fetch(singleRecordEndpoint, options);
-    const jsonResponse = await response.json();
-    console.log(jsonResponse)
-    res.json(jsonResponse);
-  } else {
-    console.log("Not Enough in Stock");
+    },)
+  });
+  const options = {
+    method: 'PUT',
+    headers: {
+      'X-Cybozu-API-Token': apiToken,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(requestBody)
   }
-
+  const response = await fetch(multipleRecordsEndpoint, options);
+  const jsonResponse = await response.json();
+  res.status(200).json({
+    success: true,
+    response: jsonResponse
+  })
+  return
 });
 
 app.listen(PORT, () => {

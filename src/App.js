@@ -23,13 +23,21 @@ function App() {
       }
     });
     setCart(cartCopy);
-    console.log(cart)
   }
 
   let startCheckout = async () => {
     closeDialog()
     try {
-      await tryCheckout(cart);
+      let checkoutTry = await tryCheckout(cart);
+      if (checkoutTry.success === true) {
+        setLoading(false);
+        console.log("success!")
+        setCart(productsList);
+        setCartCount(0)
+      } else {
+        setLoading(false);
+        console.log("failure!")
+      }
     } catch (error) {
       console.log(error)
     }

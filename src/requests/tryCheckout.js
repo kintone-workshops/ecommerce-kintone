@@ -5,9 +5,6 @@ const endpoint = 'http://localhost:50000/putData';
 export default async function tryCheckout(cartItems) {
   /* Pass the POST API request from React to Express server */
   // - - - - - - - START - - - - - - - -
-  console.log("REQUESTING...")
-  console.log(cartItems);
-
   const options = {
     method: 'PUT',
     headers: {
@@ -17,8 +14,6 @@ export default async function tryCheckout(cartItems) {
   }
   const response = await fetch(endpoint, options);
   const jsonResponse = await response.json();
-
-  console.log(JSON.stringify(jsonResponse));
 
   // The successful response from Kintone doesn't contain any information we'll use on the front-end.
   // So we'll just pass it back as JSON as is.
