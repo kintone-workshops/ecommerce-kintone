@@ -64,7 +64,7 @@ function App() {
   return (
     <div className="App">
       <div><Toaster position="bottom-center" /></div>
-      {isSuccess ? <Confetti/> : null}
+      {isSuccess ? <Confetti /> : null}
       <Oval
         height={80}
         width={80}
