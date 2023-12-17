@@ -10,7 +10,8 @@ This guide outlines all the steps required to complete the workshop.
    * [Steps to create the Kintone App](#steps-to-create-the-kintone-app)
 * [E. Generate an API token for the Kintone app](#e-generate-an-api-token-for-the-kintone-app)
 * [F. Add a record to the Kintone App](#f-add-a-record-to-the-kintone-app)
-* [G. Let's Code](#g-lets-code)
+* [G. Let's Code!](#g-lets-code)
+   * [Coding the frontend in App.js](#coding-the-frontend-in-appjs)
 * [Check your work](#check-your-work)
 * [Still got a problem?](#still-got-a-problem)
 
@@ -138,6 +139,8 @@ So then the `https://devevents.kintone.com/k/52/` URL tells us that this App's I
 
 ## G. Let's Code!
 
+### Coding the frontend in App.js
+
 For this workshop, we will be coding in [./src/App.js](../src/App.js) and [./src/backend/server.js](../src/backend/server.js).
 
 Let's start with our frontend in [./src/App.js](../src/App.js).
@@ -244,11 +247,103 @@ First, we copy the cart as it is.
 Then for each object in the cart, if the name matches, we increase its `count` by one. We also increment the cool `cartCount` badge in the header.
 Last, we set the cart with our new values via the `setCart(cartCopy)` hook.
 
+### Coding the backend in src/backend/server.js
+
+If we click on our cart button, we have a `checkout` button ready, which fires off the `startCheckout()` function. This function makes a `PUT` request to our Express backend at `localhost:50000/putData`. It displays a loading circle while making the request. If successful, it resets our cart, and we get cool confetti as well. Woohoo.
+
+But what is a successful request? Since we're not handling payment, we'll just be checking if we have enough product in stock. This is the `count` field from our Kintone App.
+
+We have two coding challenges here:
+
+1. First get our current stock from our database.
+2. Check the stock against how many items were requested, and update the database with the new stock if there is enough.
+
+Open up [/src/backend/server.js](../src/backend/server.js), and look for the `TODO` on line 31-ish.
+
+We want to get our stock of items from our Kintone Database. If you can fill this out, you're already a pretty competent Kintone Developer!
+
+```js
+let checkItemStock = async () => {
+  const fetchOptions = {
+    method: 'GET',
+    headers: {
+      'X-Cybozu-API-Token': apiToken
+    }
+  }
+  const response = await fetch(multipleRecordsEndpoint, fetchOptions);
+  return response.json();
+}
+```
+The `checkStock()` function is as simple as can be with Kintone.
+Make a `fetch` request to the [getRecords](https://kintone.dev/en/docs/kintone/rest-api/records/get-records/) endpoint. Return that data as JSON. Thanks Kintone.
+
+Now that we have our backend stock, let's loop through each item in the cart, check it against the stock, and if we have enough in stock, update the values for our database.
+
+In short, if someone wants `3` backpacks, and we only have `2`, this will error out. If we have enough, say `5` backpacks, then our new count in our backend will be `2`.
+
+Check the next `TODO` on line 42-ish.
+
+``` js
+let compareRequestAndStock = async (stock, request) => {
+  let validItems = [];
+  request.forEach(requestedItem => {
+
+  });
+  return validItems;
+}
+```
+Ok start looping. For each item requested, let's find that item in our backend list.
+
+``` js
+let compareRequestAndStock = async (stock, request) => {
+  let validItems = [];
+  request.forEach(requestedItem => {
+    let stockItem = stock.find((item) => item.Record_number.value === requestedItem.id.toString())
+  });
+  return validItems;
+}
+```
+We use the Javascript `find` function, and compare the ID of the item, to the record number.
+Now that we know which item we're talking about, let's compare their counts.
+
+``` js
+let compareRequestAndStock = async (stock, request) => {
+  let validItems = [];
+  request.forEach(requestedItem => {
+    let stockItem = stock.find((item) => item.Record_number.value === requestedItem.id.toString())
+    if (stockItem.count.value >= requestedItem.count) {
+      let newItem = requestedItem;
+      newItem.count = stockItem.count.value - requestedItem.count;
+      validItems.push(newItem)
+    }
+  });
+  return validItems;
+}
+```
+If the count is greater than or equal to the requested amount, create a copy of that item, with a `count` value of the difference. This is what we'll save back into our database.
+
+**RESTART YOUR BACKEND** with a quick `npm run start` and let's try to checkout!
+If you see confetti, you have a working ecommerce project.
+
+## Refactoring / Improving
+
+Experienced coders will see a few major sources of trouble / areas to improve on.
+
+1. Our `find()` function above requires that the store objects are registered in the Kintone Database in a certain order. You should really not use `Record_Id`, but add an `id` field for each product.
+   
+2. But really, we're keeping our products in a JSON file. Shouldn't we be getting all the product data, including the `count` from our Kintone Database in the first place? See if you can add a `/getProducts` route to [./src/backend/server.js](../src/backend/server.js), then `map` (Hint hint) through that information on the frontend. This way, you could even display the price, or remaining stock if you want. You could even block people from adding to their cart if there isn't enough stock.
+
+3. Our frontend doesn't handle failure very well... When there isn't enough stock, the wheel just spins. Using the `response` from our backend's `checkoutTry.success` parameter, maybe add a `toast` or other UI element to let users know their purchase failed.
+
+4. Our frontend code is a little messy... maybe we should turn the popup dialogs into components.
+
+5. And the big one, adding payment. There are many frameworks that help you handle payment. I personally am a big fan of Stripe the company. You'd want to make a payment request in [./src/backend/server.js](../src/backend/server.js) after checking the stock available, wait for the response, and then continue with the checkout flow. Maybe even save the customer shipping data etc in another Kintone App?
+
 ## Check your work
 
 Is your code not working?
 
-Compare your [./src/App.js](../src/App.js) and [./src/backend/server.js](../src/backend/server.js)with the [Solution.md](./Solution.md) to see if it is all written correctly.
+Compare your [./src/App.js](../src/App.js) and [./src/backend/server.js](../src/backend/server.js) with the [Solution.md](./Solution.md) to see if it is all written correctly.
 
 ## Still got a problem?
 

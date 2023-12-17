@@ -28,27 +28,11 @@ const corsOptions = {
 const multipleRecordsEndpoint = `https://${subdomain}.kintone.com/k/v1/records.json?app=${appID}`
 
 let checkItemStock = async () => {
-  const fetchOptions = {
-    method: 'GET',
-    headers: {
-      'X-Cybozu-API-Token': apiToken
-    }
-  }
-  const response = await fetch(multipleRecordsEndpoint, fetchOptions);
-  return response.json();
+// TODO!
 }
 
 let compareRequestAndStock = async (stock, request) => {
-  let validItems = [];
-  request.forEach(requestedItem => {
-    let stockItem = stock.find((item) => item.Record_number.value === requestedItem.id.toString())
-    if (stockItem.count.value >= requestedItem.count) {
-      let newItem = requestedItem;
-      newItem.count = stockItem.count.value - requestedItem.count;
-      validItems.push(newItem)
-    }
-  });
-  return validItems;
+  // TODO. This one is hard!
 }
 
 // This route executes when a PUT request lands on localhost:50000/putData
