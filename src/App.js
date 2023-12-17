@@ -16,15 +16,9 @@ function App() {
   const [cartCount, setCartCount] = useState(0)
   const [isSuccess, setIsSuccess] = useState(false);
 
+  // TODO!
   let addToCart = (selectedItem) => {
-    let cartCopy = cart;
-    cartCopy.forEach(cartObject => {
-      if (cartObject.productName == selectedItem) {
-        cartObject.count += 1;
-        setCartCount(cartCount + 1);
-      }
-    });
-    setCart(cartCopy);
+
   }
 
   let startCheckout = async () => {
@@ -90,12 +84,7 @@ function App() {
       <div className='home'>
         <Hero />
         <div className='row'>
-          {productsList.map((product, index) => {
-            return (
-              <Card key={index} productName={product.productName} img={product.productImage} addToCart={addToCart} />
-            );
-          })
-          }
+          {/* TODO! */}
         </div>
       </div>
     </div>

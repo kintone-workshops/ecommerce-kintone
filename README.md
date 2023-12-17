@@ -1,8 +1,3 @@
-# THIS REPO IS UNDER CONSTRUCTION
-Please check back later for the completed repo!
-
----
-
 # Code Together: Ecommerce Frontend and Backend with Kintone
 
 ---

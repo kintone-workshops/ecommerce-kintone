@@ -10,7 +10,7 @@ This guide outlines all the steps required to complete the workshop.
    * [Steps to create the Kintone App](#steps-to-create-the-kintone-app)
 * [E. Generate an API token for the Kintone app](#e-generate-an-api-token-for-the-kintone-app)
 * [F. Add a record to the Kintone App](#f-add-a-record-to-the-kintone-app)
-* [G. Edit App.js](#g-edit-appjs)
+* [G. Let's Code](#g-lets-code)
 * [Check your work](#check-your-work)
 * [Still got a problem?](#still-got-a-problem)
 
@@ -136,15 +136,119 @@ So then the `https://devevents.kintone.com/k/52/` URL tells us that this App's I
 2. Fill out the fields (for this workshop, we're selling `Waterbottles`, `Chargers`, and `Backpacks` ) and save the record by clicking the **Save** button on the bottom left side of the screen.
 
 
-## G. Edit App.js
+## G. Let's Code!
 
 For this workshop, we will be coding in [./src/App.js](../src/App.js) and [./src/backend/server.js](../src/backend/server.js).
+
+Let's start with our frontend in [./src/App.js](../src/App.js).
+
+We have two coding challenges here:
+
+1. Our products aren't displayed! Let's map through them and get some cards on the front page.
+2. Our `addToCart()` function needs to be filled in.
+
+Let's check out what our HTML (JSX) is doing, and see if we can display some products.
+At the top of [./src/App.js](../src/App.js), you can see we have a few imports:
+
+```js
+import { useState, useRef } from 'react';
+import './App.css';
+import Hero from './components/hero.js';
+import Card from './components/card.js';
+import Header from './components/header.js';
+import productsList from './data/products.js';
+import { Oval } from 'react-loader-spinner'
+import { Toaster } from 'react-hot-toast';
+import Confetti from 'react-confetti'
+import tryCheckout from './requests/tryCheckout.js';
+```
+
+These are components (ugly ones) I made to speed the workshop along. It is a very basic web design pattern, to have rows of `cards`, and our store is no different.
+We're also importing [productsList](../src/data/products.js). Here we have a basic JSON like object array with some images ready.
+
+Scroll down to the `TODO` on line 87-ish in [./src/App.js](../src/App.js).
+We're going to be **mapping** through our products list here, and displaying each one in a `card`.
+
+```jsx
+        <div className='row'>
+          {productsList.map((product, index) => {
+
+          })
+          }
+        </div>
+```
+In React, you'll often be `looping` through data, and displaying each piece of data with it's properties. Most beginners will immediately reach for the `forEach` loop, however in React you'll be using the `map` function, which assigns certain properties of objects to specific places.
+
+We have a [card.js](../src/components/card.js) component ready... let's look at what kind of props it wants:
+
+``` jsx
+import '../App.css';
+import toast from 'react-hot-toast';
+
+let Card = (props) => {
+  return (
+    <div className='card' onClick={() => {
+      props.addToCart(props.productName)
+      toast.success("Added to Cart!")
+    }}>
+      <p>{props.productName}</p>
+      <img src={props.img} />
+    </div>
+  );
+};
+
+export default Card;
+```
+You can see it has a few props being used:
+
+`props.addToCart(props.productName)`
+`props.productName`
+`props.img`
+
+Let's give them to our card component:
+
+``` jsx
+        <div className='row'>
+          {productsList.map((product, index) => {
+            return (
+              <Card key={index} productName={product.productName} img={product.productImage} addToCart={addToCart} />
+            );
+          })
+          }
+        </div>
+```
+The `productName` and `productImage` props come from our [productsList](../src/data/products.js).
+Open the file and take a look!
+
+However, what is the `addToCart` prop?
+
+That is our next `TODO` on line 19 of [./src/App.js](../src/App.js).
+When we click on a product, we want to add it to our cart, right?
+We have a blank `addToCart(selectedItem)` function to fill in.
+
+If you `console.log(selectedItem)` in the function, you'll see that it is giving us the `productName` property. Let's check each one of our products, and if the name matches, increase its `count` in the cart.
+
+```js
+  let addToCart = (selectedItem) => {
+    let cartCopy = cart;
+    cartCopy.forEach(cartObject => {
+      if (cartObject.productName == selectedItem) {
+        cartObject.count += 1;
+        setCartCount(cartCount + 1);
+      }
+    });
+    setCart(cartCopy);
+  }
+```
+First, we copy the cart as it is.
+Then for each object in the cart, if the name matches, we increase its `count` by one. We also increment the cool `cartCount` badge in the header.
+Last, we set the cart with our new values via the `setCart(cartCopy)` hook.
 
 ## Check your work
 
 Is your code not working?
 
-Compare your [./src/App.js](../src/App.js) with the [Solution.md](./Solution.md) to see if it is all written correctly.
+Compare your [./src/App.js](../src/App.js) and [./src/backend/server.js](../src/backend/server.js)with the [Solution.md](./Solution.md) to see if it is all written correctly.
 
 ## Still got a problem?
 
