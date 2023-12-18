@@ -12,6 +12,8 @@ This guide outlines all the steps required to complete the workshop.
 * [F. Add a record to the Kintone App](#f-add-a-record-to-the-kintone-app)
 * [G. Let's Code!](#g-lets-code)
    * [Coding the frontend in App.js](#coding-the-frontend-in-appjs)
+   * [Coding the backend in server.js](#coding-the-backend-in-srcbackendserverjs)
+* [H. Start the Servers](#h-start-the-servers)
 * [Check your work](#check-your-work)
 * [Still got a problem?](#still-got-a-problem)
 
@@ -19,6 +21,10 @@ This guide outlines all the steps required to complete the workshop.
 
 First, clone the [kintone-workshops/ecommerce-kintone](https://github.com/kintone-workshops/ecommerce-kintone) repo!  🚀  
 Then go inside the folder & install the dependencies!
+
+⚡ Two terminal windows are required for this workshop.
+
+### Terminal 1
 
 ```shell
 cd Downloads
@@ -28,10 +34,14 @@ git clone https://github.com/kintone-workshops/ecommerce-kintone
 cd ecommerce-kintone
 
 npm install
+```
 
-cd ./src/backend
+### Terminal 2
 
-npm install
+```shell
+cd Downloads/ecommerce-kintone
+
+cd backend && npm install
 ```
 
 ## B. Get your free Kintone database
@@ -92,12 +102,12 @@ Here are the required fields & their configurations for our workshop:
 ### Steps to create the Kintone App
 
 To create the Kintone App, click the **➕** button on the upper right side of the Kintone Portal.
-* ![Screenshot: The "➕" button](img/common_kintone/CreateApp-1.png)
+![Screenshot: The "➕" button](img/common_kintone/CreateApp-1.png)
 
 Once you have configured the fields, the Kintone App should look like this:  
-![Screenshot of the completed Kintone App](img/KintoneApp_Complete_Arrows.png)
+![Screenshot of the completed Kintone App](img/KintoneApp.png)
 
-Then, click the **Save** and **Activate App** buttons! 💪
+Then, click the **Save Form** and **Activate App** buttons! 💪
 
 _Confused? 🤔 → Check out the [How to Create a Kintone Database App](https://youtu.be/pRtfn-8cf_I) video 📺_
 
@@ -106,15 +116,15 @@ _Confused? 🤔 → Check out the [How to Create a Kintone Database App](https:/
 We need to generate an API Token for our Kintone App.
 
 1. From the Kintone App, click the **App Settings** button ⚙️ on the upper right side.
-   * ![Screenshot: The "App Settings" button](https://get.kintone.help/k/img/settings_new_icon.png)
-2. Select the **App Settings** tab
-3. Under **Customization and Integration**, click the **API Token** button.
-4. Click **Generate**. ![Screenshot: The "Generate" button](img/common_kintone/KintoneApp_API_1.png)
-5. Check the `Edit records` box.  
-   * ![Screenshot: The "Edit records" boxes](img/common_kintone/KintoneApp_API_2.png)
-6. Copy the API Token and paste it to the `APITOKEN` variable in your `.env` file.
-7. Click the **Save** button on the bottom right side of the screen.
-8. Click the **Update App** button on the upper right side of the screen.
+  ![Screenshot: The "App Settings" button](https://get.kintone.help/k/img/settings_new_icon.png)
+1. Select the **App Settings** tab
+1. Under **Customization and Integration**, click the **API Token** button.
+1. Click **Generate**. ![Screenshot: The "Generate" button](img/common_kintone/KintoneApp_API_1.png)
+1. Check the `Add records` and `Edit records` box.  
+  ![Screenshot: The "Edit records" boxes](img/common_kintone/KintoneApp_API_2.png)
+1. Copy the API Token and paste it to the `APITOKEN` variable in your `.env` file.
+1. Click the **Save** button on the bottom right side of the screen.
+1. Click the **Update App** button on the upper right side of the screen.
 
 Next, let's fill in the `APPID` and `SUBDOMAIN` in our `.env` file.
 The number can be easily found in the Kintone App's URL!
@@ -134,8 +144,10 @@ So then the `https://devevents.kintone.com/k/52/` URL tells us that this App's I
 ## F. Add a record to the Kintone App
 
 1. Go to your Kintone App and add a record by clicking the **➕** button on the upper right side of the screen.
-2. Fill out the fields (for this workshop, we're selling `Waterbottles`, `Chargers`, and `Backpacks` ) and save the record by clicking the **Save** button on the bottom left side of the screen.
-
+2. Fill out the fields. For this workshop, we're selling Waterbottles, Chargers, and Backpacks. 
+   - Add `Backpack` as your first record,
+   - `Watterbottle` as your second record, and
+   - `Charger` as your third record.
 
 ## G. Let's Code!
 
@@ -169,7 +181,7 @@ import tryCheckout from './requests/tryCheckout.js';
 These are components (ugly ones) I made to speed the workshop along. It is a very basic web design pattern, to have rows of `cards`, and our store is no different.
 We're also importing [productsList](../src/data/products.js). Here we have a basic JSON like object array with some images ready.
 
-Scroll down to the `TODO` on line 87-ish in [./src/App.js](../src/App.js).
+Scroll down to the `TODO` on line 87 in [./src/App.js](../src/App.js).
 We're going to be **mapping** through our products list here, and displaying each one in a `card`.
 
 ```jsx
@@ -243,6 +255,7 @@ If you `console.log(selectedItem)` in the function, you'll see that it is giving
     setCart(cartCopy);
   }
 ```
+
 First, we copy the cart as it is.
 Then for each object in the cart, if the name matches, we increase its `count` by one. We also increment the cool `cartCount` badge in the header.
 Last, we set the cart with our new values via the `setCart(cartCopy)` hook.
@@ -258,7 +271,7 @@ We have two coding challenges here:
 1. First get our current stock from our database.
 2. Check the stock against how many items were requested, and update the database with the new stock if there is enough.
 
-Open up [/src/backend/server.js](../src/backend/server.js), and look for the `TODO` on line 31-ish.
+Open up [/src/backend/server.js](../src/backend/server.js), and look for the `TODO` on line 31.
 
 We want to get our stock of items from our Kintone Database. If you can fill this out, you're already a pretty competent Kintone Developer!
 
@@ -322,8 +335,30 @@ let compareRequestAndStock = async (stock, request) => {
 ```
 If the count is greater than or equal to the requested amount, create a copy of that item, with a `count` value of the difference. This is what we'll save back into our database.
 
-**RESTART YOUR BACKEND** with a quick `npm run start` and let's try to checkout!
+## H. Start the servers
+
+Open two terminal windows
+
+### Terminal 1 - Frontend
+
+```shell
+cd ecommerce-kintone
+
+npm run start
+```
+
+### Terminal 2 - Backend
+
+```shell
+cd ecommerce-kintone/backend
+
+npm run start
+```
+
+Navigate to [`localhost:3000`](http://localhost:3000/) and let's try to checkout!
 If you see confetti, you have a working ecommerce project.
+
+Congratulations, you did it!
 
 ## Refactoring / Improving
 

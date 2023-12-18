@@ -13,7 +13,6 @@ Reserve your spot now and let's **Code Together!**
 * [Get Your Free Kintone Database](#get-your-free-kintone-database)
 * [Workshop Steps](#workshop-steps)
 * [Debugging](#debugging)
-  * [Not seeing a highlighted `TODO:`?](#not-seeing-a-highlighted-todo)
 * [Completed Code](#completed-code)
 * [Overview of the Repo](#overview-of-the-repo)
 
