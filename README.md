@@ -25,6 +25,10 @@ _Clone the Repo & Install Dependencies_ 💪
 First, clone the [kintone-workshops/ecommerce-kintone](https://github.com/kintone-workshops/ecommerce-kintone) repo!  🚀  
 Then go inside the folder & install the dependencies!
 
+⚡ Two terminal windows are required for this workshop.
+
+### Terminal 1
+
 ```shell
 cd Downloads
 
@@ -33,16 +37,19 @@ git clone https://github.com/kintone-workshops/ecommerce-kintone
 cd ecommerce-kintone
 
 npm install
-
-cd ./src/backend
-
-npm install
 ```
-
 Open the `ecommerce-kintone` folder in [VS Code](https://code.visualstudio.com/docs/getstarted/tips-and-tricks#_command-line) as well:
 
 ```shell
 code .
+```
+
+### Terminal 2
+
+```shell
+cd Downloads/ecommerce-kintone
+
+cd backend && npm install
 ```
 
 ## Get Your Free Kintone Database
@@ -63,8 +70,6 @@ For more information, check out the [Workshop_Steps.md > B. Get Your Free Kinton
 ## Workshop Steps
 
 [Workshop_Steps.md](./docs/Workshop_Steps.md)
-
----
 
 ---
 
