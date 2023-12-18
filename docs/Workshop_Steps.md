@@ -149,6 +149,10 @@ So then the `https://devevents.kintone.com/k/52/` URL tells us that this App's I
    - `Watterbottle` as your second record, and
    - `Charger` as your third record.
 
+![Screenshot: The records](img/KintoneApp_records.png)
+
+⚠️ The **record number** has to be the same as the **id** in [productsList](../src/data/products.js)
+
 ## G. Let's Code!
 
 ### Coding the frontend in App.js
