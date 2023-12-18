@@ -63,7 +63,7 @@ For more information, check out the [Workshop_Steps.md > B. Get Your Free Kinton
 
 ## Workshop Steps
 
-TODO: Copy the outline of the workshop steps from [Workshop_Steps.md](./docs/Workshop_Steps.md) & paste it here
+[Workshop_Steps.md](./docs/Workshop_Steps.md)
 
 ---
 
@@ -74,11 +74,7 @@ TODO: Copy the outline of the workshop steps from [Workshop_Steps.md](./docs/Wor
 
 Here is a rundown of common problems that may occur & their solutions!
 
-TODO: Update the following section with relevant Debug snippets - See [Snippets_Debug.md](./Snippets_Debug.md)
-
-### Not seeing a highlighted `TODO:`?
-Click the `Install` button on the VS Code pop-up message to install [TODO Highlight extension](https://marketplace.visualstudio.com/items?itemName=wayou.vscode-todo-highlight).
-* [![vscode-setting-extension.png](./docs/img/common_vscode/vscode-setting-extension.png)](./docs/img/common_vscode/vscode-setting-extension-HD.png)  
+See [Snippets_Debug.md](./Snippets_Debug.md)
 
 ---
 
