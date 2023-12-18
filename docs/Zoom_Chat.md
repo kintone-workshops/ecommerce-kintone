@@ -1,16 +1,5 @@
 # Zoom Chat Snippets
 
-TODO: Perform the following steps to update the Zoom Chat Snippets:
-* TODO: swap `bit.ly/kintone-shop` with the bit.ly link
-* TODO: swap `ecommerce-kintone` with the workshop repo name
-* TODO: swap `youtube.com/live/wdzul3EUnqA
-` with YouTube Live Link
-* TODO: Update `Create a .env File` section
-* TODO: Update `Create a Kintone Web Database App` section
-* TODO: Swap `bit.ly/INSERT_SURVEY_LINK` with the Survey Link
-
----
-
 <!-- markdownlint-disable -->
 
 * [Check-in Time Slots](#check-in-time-slots)
