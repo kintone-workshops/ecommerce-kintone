@@ -151,7 +151,7 @@ So then the `https://devevents.kintone.com/k/52/` URL tells us that this App's I
 
 ![Screenshot: The records](img/KintoneApp_records.png)
 
-⚠️ The **record number** has to be the same as the **id** in [productsList](../src/data/products.js)
+⚠️ The **Record Number** has to be the same as the **id**, and the **Name** has to be the same as the **productName** in [productsList](../src/data/products.js)
 
 ## G. Let's Code!
 
