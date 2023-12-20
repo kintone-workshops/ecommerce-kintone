@@ -47,7 +47,7 @@ code .
 ### Terminal 2
 
 ```shell
-cd Downloads/ecommerce-kintone
+cd Downloads/ecommerce-kintone/src
 
 cd backend && npm install
 ```
