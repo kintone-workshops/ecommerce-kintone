@@ -1,16 +1,5 @@
 # Zoom Chat Snippets
 
-TODO: Perform the following steps to update the Zoom Chat Snippets:
-* TODO: swap `bit.ly/kintone-shop` with the bit.ly link
-* TODO: swap `ecommerce-kintone` with the workshop repo name
-* TODO: swap `youtube.com/live/wdzul3EUnqA
-` with YouTube Live Link
-* TODO: Update `Create a .env File` section
-* TODO: Update `Create a Kintone Web Database App` section
-* TODO: Swap `bit.ly/INSERT_SURVEY_LINK` with the Survey Link
-
----
-
 <!-- markdownlint-disable -->
 
 * [Check-in Time Slots](#check-in-time-slots)
@@ -122,6 +111,11 @@ https://youtube.com/live/wdzul3EUnqA
 
 ## Install Commands {Get Started}
 
+Two terminal windows are required for this workshop.
+
+### Terminal 1
+
+```
 cd Downloads
 
 git clone https://github.com/kintone-workshops/ecommerce-kintone
@@ -129,17 +123,23 @@ git clone https://github.com/kintone-workshops/ecommerce-kintone
 cd ecommerce-kintone
 
 npm install
+```
+
+### Terminal 2
+
+```
+cd Downloads/ecommerce-kintone
+
+cd backend && npm install
+```
 
 ## Workshop Steps
 
-ecommerce-kintone/docs
-/Workshop_Steps.md
-
-or https://github.com/kintone-workshops/ecommerce-kintone/blob/main/docs/Workshop_Steps.md
+https://github.com/kintone-workshops/ecommerce-kintone/blob/main/docs/Workshop_Steps.md
 
 =   =   =   =   =   =   =   =   =   =
 
-# Where to get Kintone Web Database Subdomain?
+## Where to get Kintone Web Database Subdomain?
 
 Sign up for the FREE Kintone Developer License by filling out this web form:
 
@@ -174,13 +174,9 @@ Using the .env.example file as a template, create a .env file.
 
 Then input your Kintone credentials like the following:
 
-KINTONE_BASE_URL="https://example.kintone.com"
-KINTONE_USERNAME="MyEmail@example.com"
-KINTONE_PASSWORD="ILoveKintone!"
-VITE_KINTONE_SUBDOMAIN="example"
-VITE_KINTONE_TOKEN="abcd2ef3g3hij2kl1"
-VITE_KINTONE_APPID="1"
-VITE_OPEN_AI_TOKEN="1234567890"
+SUBDOMAIN = "example"
+APPID = "1"
+APITOKEN = "1J22qNAR54I4eiMcd0JmfDAavJNfNJDVaqt34X9A"
 
 ⚠️ DO NOT DELETE THE .env.example FILE!
 .env.example is used by env-cmd to verify that the .env file is correctly configured.
@@ -218,17 +214,11 @@ How to set the Field Codes for the Kintone App?
 ⚠️ Field Codes are case-sensitive ⚠️
 
 Set the following Field Codes
-* Radio button #1  → animal
-* Radio button #2  → emotion
-* Text             → random
-* Check Box        → clothes
-* Date and Time    → dateTime
-* Attachment     → result
-* Space #1    → generateButton
-* Space #2    → spinner
+* Text → name
+* Number #1 → count
+* Number #2 → price
 
-- Save!
-- Be sure to click Save and Activate App buttons! 💪
+- Be sure to click Save Form and Activate App buttons! 💪
 
 Ref:  
 https://github.com/kintone-workshops/ecommerce-kintone/blob/main/docs/Workshop_Steps.md#d-create-a-kintone-web-database-app
@@ -285,6 +275,7 @@ Then please verify that
 =   =   =   =   =   =   =   =   =   =
 
 ## Join our Meetup Group
+
 https://www.meetup.com/kintone-developers/
 
 ## Got Kintone Questions?
@@ -299,7 +290,7 @@ https://forum.kintone.dev/
 
 Enter to WIN a $25 Amazon Gift Card! 💰️
 
-https://bit.ly/INSERT_SURVEY_LINK
+https://bit.ly/kintone-survey-link
 
 Your feedback is vital for us to improve our workshop!
 Thank you for your time & input ~
@@ -378,6 +369,7 @@ Feel free to msg me with a workshop-related or a general Kintone question to me 
 =   =   =   =   =   =   =   =   =   =
 
 ## Why use Kintone?
+
 + Super easy to use database / backend solution
 + You can use vanilla JS to build customizations right on the platform
 + Companies are hiring engineers to build Kintone integrations

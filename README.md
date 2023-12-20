@@ -13,7 +13,6 @@ Reserve your spot now and let's **Code Together!**
 * [Get Your Free Kintone Database](#get-your-free-kintone-database)
 * [Workshop Steps](#workshop-steps)
 * [Debugging](#debugging)
-  * [Not seeing a highlighted `TODO:`?](#not-seeing-a-highlighted-todo)
 * [Completed Code](#completed-code)
 * [Overview of the Repo](#overview-of-the-repo)
 
@@ -26,6 +25,10 @@ _Clone the Repo & Install Dependencies_ 💪
 First, clone the [kintone-workshops/ecommerce-kintone](https://github.com/kintone-workshops/ecommerce-kintone) repo!  🚀  
 Then go inside the folder & install the dependencies!
 
+⚡ Two terminal windows are required for this workshop.
+
+### Terminal 1
+
 ```shell
 cd Downloads
 
@@ -34,16 +37,19 @@ git clone https://github.com/kintone-workshops/ecommerce-kintone
 cd ecommerce-kintone
 
 npm install
-
-cd ./src/backend
-
-npm install
 ```
-
 Open the `ecommerce-kintone` folder in [VS Code](https://code.visualstudio.com/docs/getstarted/tips-and-tricks#_command-line) as well:
 
 ```shell
 code .
+```
+
+### Terminal 2
+
+```shell
+cd Downloads/ecommerce-kintone
+
+cd backend && npm install
 ```
 
 ## Get Your Free Kintone Database
@@ -63,9 +69,7 @@ For more information, check out the [Workshop_Steps.md > B. Get Your Free Kinton
 
 ## Workshop Steps
 
-TODO: Copy the outline of the workshop steps from [Workshop_Steps.md](./docs/Workshop_Steps.md) & paste it here
-
----
+[Workshop_Steps.md](./docs/Workshop_Steps.md)
 
 ---
 
@@ -74,11 +78,7 @@ TODO: Copy the outline of the workshop steps from [Workshop_Steps.md](./docs/Wor
 
 Here is a rundown of common problems that may occur & their solutions!
 
-TODO: Update the following section with relevant Debug snippets - See [Snippets_Debug.md](./Snippets_Debug.md)
-
-### Not seeing a highlighted `TODO:`?
-Click the `Install` button on the VS Code pop-up message to install [TODO Highlight extension](https://marketplace.visualstudio.com/items?itemName=wayou.vscode-todo-highlight).
-* [![vscode-setting-extension.png](./docs/img/common_vscode/vscode-setting-extension.png)](./docs/img/common_vscode/vscode-setting-extension-HD.png)  
+See [Snippets_Debug.md](./Snippets_Debug.md)
 
 ---
 
